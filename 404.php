@@ -29,7 +29,7 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
-test test
+
 </head>
 
 <body>
@@ -69,6 +69,6 @@ test test
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
-
+</body>
 
 </html>
