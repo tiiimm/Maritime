@@ -1,0 +1,21 @@
+# Enable the RewriteEngine
+RewriteEngine on
+
+# Redirect HTTP to HTTPS
+RewriteCond %{SERVER_PORT} 80
+
+
+# Set the 404 error document
+ErrorDocument 404 http://localhost/obtimcs/404
+
+# Rewrite rules for specific pages
+RewriteRule ^login$ login.php [L]
+RewriteRule ^index$ index.php [L]
+RewriteRule ^profile$ profile.php [L]
+RewriteRule ^mhei$ mhei.php [L]
+RewriteRule ^users$ users.php [L]
+RewriteRule ^app_index$ app_index.php [L]
+RewriteRule ^404$ 404.php [L]
+
+# Disable directory listing
+Options -Indexes
