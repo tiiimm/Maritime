@@ -48,7 +48,7 @@
           <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
           <li><a class="nav-link scrollto" href="#features">Features</a></li>
- 
+
           <li><a class="nav-link scrollto" href="login">Login</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -168,7 +168,7 @@
               <h3><a href="">Email Notification</a></h3>
             </div>
           </div>
-
+ 
 
 
       </div>
@@ -176,6 +176,70 @@
 
   
 
+    <!-- ======= Details Section ======= -->
+    <section id="details" class="details">
+      <div class="container">
+
+        <div class="row content">
+          <div class="col-md-4" data-aos="fade-right">
+            <img src="assets/landing_assets/img/details-1.png" class="img-fluid" alt="">
+          </div>
+          <div class="col-md-8 pt-4" data-aos="fade-up">
+            <h3>Real Time Statistics.</h3>
+            <p class="fst-italic">
+            Our app provides Real Time Statistics, offering instant data capture, processing, and analysis. This enables users to access up-to-the-minute information, make timely decisions, and stay ahead in fast-paced environments. 
+            </p>
+            <ul>
+              <li><i class="bi bi-check"></i> User friendly user interface.</li>
+              <li><i class="bi bi-check"></i> Secured user accounts.</li>
+              <li><i class="bi bi-check"></i> Real time data reports.</li>
+             
+            </ul>
+            <p>
+            Our app delivers Real Time Statistics, ensuring instant data capture, processing, and analysis for up-to-the-minute insights. Users can access real-time data reports through a user-friendly interface and benefit from secured user accounts, allowing for timely decisions and a competitive edge in fast-paced environments.
+            </p>
+          </div>
+        </div>
+
+        <div class="row content">
+          <div class="col-md-4 order-1 order-md-2" data-aos="fade-left">
+            <img src="assets/landing_assets/img/details-2.png" class="img-fluid" alt="">
+          </div>
+          <div class="col-md-8 pt-5 order-2 order-md-1" data-aos="fade-up">
+            <h3>Email Notification</h3>
+        
+            <p>
+            Real-time Training Updates: MaritimeMate revolutionizes the way maritime students stay informed by offering instantaneous access to a comprehensive repository of up-to-date training materials, safety protocols, and industry regulations. Whether a student is navigating through stormy waters or maneuvering through calm seas, MaritimeMate ensures they're equipped with the latest knowledge and skills to handle any scenario they may encounter at sea.
+            </p>
+            <p>
+            Students are constantly in sync with evolving maritime standards and best practices. From revised safety procedures to updated navigation techniques, every critical piece of information is delivered promptly to their devices, eliminating the risk of outdated or obsolete training materials compromising their readiness.
+            </p>
+          </div>
+        </div>
+
+        <div class="row content">
+          <div class="col-md-4" data-aos="fade-right">
+            <img src="assets/landing_assets/img/details-3.png" class="img-fluid" alt="">
+          </div>
+          <div class="col-md-8 pt-5" data-aos="fade-up">
+            <h3>Data Repository</h3>
+            <p>Your secure and versatile data repository solution designed to streamline data management and access.</p>
+            <ul>
+              <li><i class="bi bi-check"></i> Robust Data Storage.</li>
+              <li><i class="bi bi-check"></i> Flexible Data Organization.</li>
+              <li><i class="bi bi-check"></i> Seamless Data Access and Collaboration.</li>
+            </ul>
+            <p>
+            Providing a secure and comprehensive data repository tailored to the unique needs of maritime education and training. As a centralized hub for storing, managing, and accessing maritime-specific data.
+            </p>
+        
+          </div>
+        </div>
+
+
+
+      </div>
+    </section><!-- End Details Section -->
 
    
 
@@ -234,7 +298,6 @@
 
       </div>
     </section><!-- End Testimonials Section -->
-
 
 
     
