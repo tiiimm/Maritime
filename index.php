@@ -6,24 +6,32 @@ if(!isset($_SESSION['username'])) {
     exit();
 }
 
-include 'includes/connection.php';
-$username = $link->real_escape_string($_SESSION['username']);
+  $curl = curl_init();
+  curl_setopt_array($curl, [
+      CURLOPT_URL => "http://192.168.68.106:8000/api/user/".$_SESSION['user_id'],
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_CUSTOMREQUEST => "GET",
+      CURLOPT_HTTPHEADER => [
+          "Accept: application/json",
+          "Content-Type: application/json",
+          "Authorization: Bearer " .$_SESSION['token']
+      ]
+  ]);
 
+  $response = curl_exec($curl);
+  $err = curl_error($curl);
 
-$sql_sel = "SELECT name, username, email, title, role_id FROM users INNER JOIN roles ON users.role_id = roles.id WHERE username = '$username'";
-$result_sel = $link->query($sql_sel);
+  curl_close($curl);
 
-if ($result_sel->num_rows > 0) {
-    // Output data
-    while($row_u = $result_sel->fetch_assoc()) {
-        $fname = $row_u["name"];
-        $email = $row_u["email"];
-        $title = $row_u["title"];
-        $user_level = $row_u["role_id"];
-    }
-} else {
-    echo "No Record Found!";
-}
+  if ($err) {     
+    displayError($err);
+  } else {
+      $data = json_decode($response, 1);
+      $fname = $data["name"];
+      $email = $data["email"];
+      $title = $data["role"]['title'];
+      $user_level = $data["role"]['id'];
+  }
 
 
 ?>
