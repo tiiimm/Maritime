@@ -334,6 +334,11 @@ if(!isset($_SESSION['username'])) {
             </a>
           </li>
           <li>
+            <a id="shipping-company-link" style="cursor:pointer;" class="">
+              <i class="bi bi-circle"></i><span>Shipping Companies</span>
+            </a>
+          </li>
+          <li>
             <a href="#!" class="">
               <i class="bi bi-circle"></i><span>Maritime Programs</span>
             </a>
@@ -408,6 +413,18 @@ if(!isset($_SESSION['username'])) {
                 $('#main').load('mhei.php', function() {
                     $('#loader').hide();
                     $('#mhei-link').addClass('active'); 
+                    $('#shipping-company-link').removeClass('active'); 
+                    $('#users-link').addClass('collapsed');
+                    $('#dashboard-link').addClass('collapsed');
+                });
+            });
+            $('#shipping-company-link').click(function(event) {
+                event.preventDefault();
+                $('#loader').show();
+                $('#main').load('shippingCompany.php', function() {
+                    $('#loader').hide();
+                    $('#shipping-company-link').addClass('active'); 
+                    $('#mhei-link').removeClass('active'); 
                     $('#users-link').addClass('collapsed');
                     $('#dashboard-link').addClass('collapsed');
                 });
