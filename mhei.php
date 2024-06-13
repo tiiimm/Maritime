@@ -2,14 +2,14 @@
 <script src="assets/js/jquery.dataTables.min.js"></script>
 
 <div class="pagetitle">
-  <h1>MHEI</h1>
-  <nav>
+  <!-- <h1>MHEI</h1> -->
+  <!-- <nav>
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="index.html">Home</a></li>
       <li class="breadcrumb-item">Table</li>
       <li class="breadcrumb-item active">MHEI</li>
     </ol>
-  </nav>
+  </nav> -->
 </div><!-- End Page Title -->
 <section class="section">
   <div class="row">
@@ -62,56 +62,60 @@
               </thead>
               <tbody>
                 <?php
-                  include 'includes/connection.php';
-                  // Execute a query to retrieve data
-                  $query_mhei = "SELECT * FROM mheis";
-                  $result_mhei = mysqli_query($link, $query_mhei);
-                  // Initialize a counter variable
-                  $i = 1;
-                  // Check if the query was successful
-                  if ($result_mhei) {
-                      // Loop through the result set and generate the table rows
-                      while ($row = mysqli_fetch_assoc($result_mhei)) {
-                        echo "<tr>";
-                        echo "<td>{$i}</td>"; 
-                        $logo = !empty($row['logo']) ? $row['logo'] : 'mhei_logo/default.jpg';
-                        echo "<td>       
-                        <a href='{$logo}' target='_blank'>
-                            <img src='{$logo}' alt='School Logo' style='width:50px; height:auto;'>
-                        </a>
-                      </td>";
-                        echo "<td>{$row['institutional_code']}</td>";   
-                        echo "<td>{$row['school_name']}</td>";
-                        echo "<td>{$row['school_type']}</td>";
-                        echo "<td>{$row['address']}</td>";
-                        echo "<td>{$row['email']}</td>";
-                        echo "<td>{$row['contact_number']}</td>";
-                        echo "<td>{$row['region']}</td>";
-                    
-                        $status = $row['status'];
-                        if ($status == 'ENABLED') {
-                            echo "<td><span class='badge rounded-pill bg-success'>{$status}</span></td>";
-                        } elseif ($status == 'DISABLED') {
-                            echo "<td><span class='badge rounded-pill bg-danger'>{$status}</span></td>";
-                        } else {
-                            echo "<td><span class='badge rounded-pill bg-secondary'>No Status</span></td>";
-                        }
-                      
-                        echo "<td align='center' style='text-align: center;'>                  
-                        <a href='php/delete_users.php?id=" . $row['id'] . "' class='btn btn-danger btn-sm' data-toggle='tooltip' title='Delete Record' onclick=\"return confirm('Are you sure you want to delete this record?')\"><i class='ri-delete-bin-2-line'></i></a></td>";
-
-                        echo "</tr>";
-
-                        // Increment the counter variable
-                        $i++;
-                    }
-                    // Free the result set
-                    mysqli_free_result($result_mhei);
+                  session_start();
+                  $curl = curl_init();
+                  curl_setopt_array($curl, [
+                      CURLOPT_URL => "http://127.0.0.1:8000/api/mheis",
+                      CURLOPT_RETURNTRANSFER => true,
+                      CURLOPT_CUSTOMREQUEST => "GET",
+                      CURLOPT_HTTPHEADER => [
+                          "Accept: application/json",
+                          "Content-Type: application/json",
+                          "Authorization: Bearer " .$_SESSION['token']
+                      ]
+                  ]);
+                
+                  $response = curl_exec($curl);
+                  $err = curl_error($curl);
+                
+                  curl_close($curl);
+                
+                  if ($err) {     
+                    displayError($err);
                   } else {
-                    echo "Error executing the query: " . mysqli_error($link);
+                    $mheis = json_decode($response, 1);
+                    foreach ($mheis as $i => $mhei) {
+                      $i++;
+                      echo "<tr>";
+                        echo "<td>{$i}</td>";
+                        $logo = !empty($mhei['logo']) ? $mhei['logo'] : 'mhei_logo/default.jpg';
+                        echo "<td>
+                          <a href='{$logo}' target='_blank'>
+                              <img src='{$logo}' alt='School Logo' style='width:50px; height:auto;'>
+                          </a>
+                        </td>
+                        <td>{$mhei['institutional_code']}</td>   
+                        <td>{$mhei['school_name']}</td>
+                        <td>{$mhei['school_type']}</td>
+                        <td>{$mhei['address']}</td>
+                        <td>{$mhei['email']}</td>
+                        <td>{$mhei['contact_number']}</td>
+                        <td>{$mhei['region']}</td>";
+                        $status = $mhei['status'];
+                        if ($status == 'ENABLED') {
+                          echo "<td><span class='badge rounded-pill bg-success'>{$status}</span></td>";
+                        } elseif ($status == 'DISABLED') {
+                          echo "<td><span class='badge rounded-pill bg-danger'>{$status}</span></td>";
+                        } else {
+                          echo "<td><span class='badge rounded-pill bg-secondary'>No Status</span></td>";
+                        }
+                        echo
+                        "<td align='center' style='text-align: center;'>                  
+                          <a href='php/delete_users.php?id=" . $mhei['id'] . "' class='btn btn-danger btn-sm' data-toggle='tooltip' title='Delete Record' onclick=\"return confirm('Are you sure you want to delete this record?')\"><i class='ri-delete-bin-2-line'></i></a>
+                        </td>";
+                      echo "</tr>";
+                    }
                   }
-                  // Close the database connection
-                  mysqli_close($link);
                 ?>   
               </tbody>
             </table>
