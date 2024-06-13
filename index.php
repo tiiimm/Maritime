@@ -8,7 +8,7 @@ if(!isset($_SESSION['username'])) {
 
   $curl = curl_init();
   curl_setopt_array($curl, [
-      CURLOPT_URL => "http://192.168.68.106:8000/api/user/".$_SESSION['user_id'],
+      CURLOPT_URL => "http://127.0.0.1:8000/api/user/".$_SESSION['user_id'],
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_CUSTOMREQUEST => "GET",
       CURLOPT_HTTPHEADER => [

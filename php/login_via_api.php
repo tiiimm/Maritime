@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $curl = curl_init();
     curl_setopt_array($curl, [
-        CURLOPT_URL => "http://192.168.68.106:8000/api/login",
+        CURLOPT_URL => "http://127.0.0.1:8000/api/login",
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_CUSTOMREQUEST => "POST",
         CURLOPT_HTTPHEADER => [
